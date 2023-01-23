@@ -208,13 +208,23 @@ function findPersonFamily(person, people){
 		if(el.id === (person.currentSpouse)) {
 			return true;
 		} 
-
-    
-    
 	})
+    let findSiblings = people.filter(function(el){
+        if(el.parents.includes(person.parents[0])){
+            return true;
+        }
+    })
+
+
+
+
     let membersOfFamily = spouse.map(function(el) {
 		return `Spouse: ${el.firstName} ${el.lastName}\n`;
 	})
+    membersOfFamily.push(findSiblings.map(function(el){
+        return `Siblings: ${el.firstName} ${el.lastName}\n`;
+    }));
+
     membersOfFamily.push(parentsList.map(function(el) {
 		return `Parents: ${el.firstName} ${el.lastName}\n`;
 	}))
