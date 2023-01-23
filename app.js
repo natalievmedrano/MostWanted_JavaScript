@@ -215,9 +215,6 @@ function findPersonFamily(person, people){
         }
     })
 
-
-
-
     let membersOfFamily = spouse.map(function(el) {
 		return `Spouse: ${el.firstName} ${el.lastName}\n`;
 	})
@@ -231,6 +228,45 @@ function findPersonFamily(person, people){
 
 	return membersOfFamily.join('')
 }
+
+function findPersonDescendants(person, people,) {
+    let children = []
+
+    children = people.filter(function(el){
+        if(el.parents.includes(person.id)){
+            return true;
+        }
+    })
+    let descendants = children
+    return descendants.map(function(el){
+        return `Descendants: ${el.firstName} ${el.lastName}\n`;
+    }).join('')
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
