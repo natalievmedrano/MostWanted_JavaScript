@@ -132,6 +132,8 @@ function displayPeople(people) {
 }
 // End of displayPeople()
 
+
+
 /**
  * This function will be useful for STRINGIFYING a person-object's properties
  * in order to easily send the information to the user in the form of an alert().
@@ -153,6 +155,8 @@ function displayPerson(person) {
     alert(personInfo);
 }
 // End of displayPerson()
+
+
 
 /**
  * This function's purpose is twofold:
@@ -193,3 +197,28 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(person, people){
+	let parentsList = people.filter(function(el) {
+		if(person.parents.includes(el.id)) {
+			return true;
+		}
+	})
+	let spouse = people.filter(function(el) {
+		if(el.id === (person.currentSpouse)) {
+			return true;
+		} 
+
+	})
+    let membersOfFamily = spouse.map(function(el) {
+		return `Spouse: ${el.firstName} ${el.lastName}\n`;
+	})
+    membersOfFamily.push(parentsList.map(function(el) {
+		return `Parents: ${el.firstName} ${el.lastName}`
+	}))
+
+	return membersOfFamily.join(' ')
+}
+
+
+
