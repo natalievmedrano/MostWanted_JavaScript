@@ -209,15 +209,17 @@ function findPersonFamily(person, people){
 			return true;
 		} 
 
+    
+    
 	})
     let membersOfFamily = spouse.map(function(el) {
 		return `Spouse: ${el.firstName} ${el.lastName}\n`;
 	})
     membersOfFamily.push(parentsList.map(function(el) {
-		return `Parents: ${el.firstName} ${el.lastName}`
+		return `Parents: ${el.firstName} ${el.lastName}\n`;
 	}))
 
-	return membersOfFamily.join(' ')
+	return membersOfFamily.join('')
 }
 
 
