@@ -42,22 +42,37 @@ function app(people) {
     mainMenu(searchResults, people);
 }
 // End of app()
+let defaultPerson = {
+    "id": 0,
+    "firstName": "",
+    "lastName": "",
+    "gender": "",
+    "dob": "",
+    "height": 0,
+    "weight": 0,
+    "eyeColor": "",
+    "occupation": "",
+    "parents": [],
+    "currentSpouse": 0
+}
 
 /**
  * After finding a single person, we pass in the entire person-object that we found,
  * as well as the entire original dataset of people. We need people in order to find
  * descendants and other information that the user may want.
- * @param {Object[]} person     A singular object inside of an array.
+
  * @param {Array} people        A collection of person objects.
  * @returns {String}            The valid string input retrieved from the user.
  */
-function mainMenu(person, people) {
+function mainMenu(person = [defaultPerson], people) {
     // A check to verify a person was found via searchByName() or searchByTrait()
     if (!person[0]) {
         alert("Could not find that individual.");
         // Restarts app() from the very beginning
         return app(people);
     }
+
+    
     let displayOption = prompt(
         `Found ${person[0].firstName} ${person[0].lastName}. Do you want to know their 'info', 'family', or 'descendants'?\nType the option you want or type 'restart' or 'quit'.`
     );
@@ -245,29 +260,59 @@ function findPersonDescendants(person, people) {
 
 
 //gender dob height weight eye color
-
+function userInput(){
+    let trait = prompt("Which trait would you like?")
+    return trait
+}
 function searchByTraits(people){
-   let selectTrait = prompt('Which trait would you like to search by')
-   if (selectTrait === 'gender'){
-        return searchByGender();
-   }
-   return searchByTraits;
+    let trait = userInput()
+    let traitChoosen = people
+
+    switch (trait){
+        case "gender":
+            traitChoosen = searchByGender(traitChoosen);
+          break;
+ 
+
+    }
+    displayPeople(traitChoosen)
+    return traitChoosen
 }
 
-
 function searchByGender(people){
-    let inputGender = promptFor('Which Gender Male or Female?:')
+    let inputGender = prompt("Male or Female");
     let filteredGender = people.filter(function(el){
-        if (inputGender == 'female' || inputGender == 'male'){
-            return people.gender;
+        if(el.gender === inputGender){
+            return true;
         }
-        else{
+        else {
             return false;
         }
-
     })
     return filteredGender;
 }
+// function searchByTraits(people){
+//    let selectTrait = prompt('Which trait would you like to search by')
+//    if (selectTrait === 'gender'){
+//         return searchByGender();
+//    }
+//    return searchByTraits;
+// }
+
+
+// function searchByGender(people){
+//     let inputGender = prompt('Which Gender Male or Female?:')
+//     let filteredGender = people.filter(function(el){
+//         if (inputGender == 'female' || inputGender == 'male'){
+//             return people.gender;
+//         }
+//         else{
+//             return false;
+//         }
+
+//     })
+//     return filteredGender;
+// }
 
 
    
