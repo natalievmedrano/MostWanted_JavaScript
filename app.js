@@ -275,6 +275,9 @@ function searchByTraits(people){
         case "dob":
             traitChoosen = searchByDob(traitChoosen);
             break;
+        case "height":
+            traitChoosen = searchByHeight(traitChoosen);
+            break;
  
 
     }
@@ -303,28 +306,15 @@ function searchByDob(people){
     })
     return filteredDob
 }
-// function searchByTraits(people){
-//    let selectTrait = prompt('Which trait would you like to search by')
-//    if (selectTrait === 'gender'){
-//         return searchByGender();
-//    }
-//    return searchByTraits;
-// }
-
-
-// function searchByGender(people){
-//     let inputGender = prompt('Which Gender Male or Female?:')
-//     let filteredGender = people.filter(function(el){
-//         if (inputGender == 'female' || inputGender == 'male'){
-//             return people.gender;
-//         }
-//         else{
-//             return false;
-//         }
-
-//     })
-//     return filteredGender;
-// }
+function searchByHeight(people){
+    let inputHeight = prompt("Enter Height");
+    let filteredHeight = people.filter(function(el){
+        if(el.height == inputHeight){
+            return true;
+        }
+    })
+    return filteredHeight
+}
 
 
    
