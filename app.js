@@ -271,7 +271,10 @@ function searchByTraits(people){
     switch (trait){
         case "gender":
             traitChoosen = searchByGender(traitChoosen);
-          break;
+            break;
+        case "dob":
+            traitChoosen = searchByDob(traitChoosen);
+            break;
  
 
     }
@@ -290,6 +293,15 @@ function searchByGender(people){
         }
     })
     return filteredGender;
+}
+function searchByDob(people){
+    let inputDob = prompt("Enter Date please!");
+    let filteredDob = people.filter(function(el){
+        if(el.dob === inputDob){
+            return true;
+        }
+    })
+    return filteredDob
 }
 // function searchByTraits(people){
 //    let selectTrait = prompt('Which trait would you like to search by')
