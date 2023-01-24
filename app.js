@@ -281,7 +281,9 @@ function searchByTraits(people){
         case "weight":
             traitChoosen = searchByWeight(traitChoosen);
             break;
-
+        case "eyeColor":
+            traitChoosen = searchByEyeColor(traitChoosen);
+            break;
     }
     displayPeople(traitChoosen)
     return traitChoosen
@@ -326,7 +328,15 @@ function searchByWeight(people){
     })
     return filteredWeight
 }
-
+function searchByEyeColor(people){
+    let inputEyeColor = prompt("Enter Eye Color please!");
+    let filteredEyeColor = people.filter(function(el){
+        if(el.eyeColor == inputEyeColor){
+            return true;
+        }
+    })
+    return filteredEyeColor
+}
    
 
 
