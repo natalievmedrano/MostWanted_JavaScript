@@ -229,7 +229,7 @@ function findPersonFamily(person, people){
 	return membersOfFamily.join('')
 }
 
-function findPersonDescendants(person, people,) {
+function findPersonDescendants(person, people) {
     let children = []
 
     children = people.filter(function(el){
@@ -242,6 +242,35 @@ function findPersonDescendants(person, people,) {
         return `Descendants: ${el.firstName} ${el.lastName}\n`;
     }).join('')
 }
+
+
+//gender dob height weight eye color
+
+function searchByTraits(people){
+   let selectTrait = prompt('Which trait would you like to search by')
+   if (selectTrait === 'gender'){
+        return searchByGender();
+   }
+   return searchByTraits;
+}
+
+
+function searchByGender(people){
+    let inputGender = promptFor('Which Gender Male or Female?:')
+    let filteredGender = people.filter(function(el){
+        if (inputGender == 'female' || inputGender == 'male'){
+            return people.gender;
+        }
+        else{
+            return false;
+        }
+
+    })
+    return filteredGender;
+}
+
+
+   
 
 
 
