@@ -278,7 +278,9 @@ function searchByTraits(people){
         case "height":
             traitChoosen = searchByHeight(traitChoosen);
             break;
- 
+        case "weight":
+            traitChoosen = searchByWeight(traitChoosen);
+            break;
 
     }
     displayPeople(traitChoosen)
@@ -315,7 +317,15 @@ function searchByHeight(people){
     })
     return filteredHeight
 }
-
+function searchByWeight(people){
+    let inputWeight = prompt("Enter Weight please!");
+    let filteredWeight = people.filter(function(el){
+        if(el.weight == inputWeight){
+            return true;
+        }
+    })
+    return filteredWeight
+}
 
    
 
