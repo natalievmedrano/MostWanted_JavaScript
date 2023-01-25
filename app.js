@@ -5,7 +5,7 @@
 //////////////////////////////////////////* Beginning Of Starter Code *//////////////////////////////////////////
 // test?
 "use strict";
-//? Utilize the hotkey to hide block level comment documentation
+//? Utilize the hotkey to hide block levperson comment documentation
 ////* Mac: Press "CMD"+"K" and then "CMD"+"/"
 ////* PC: Press "CTRL"+"K" and then "CTRL"+"/"
 
@@ -16,8 +16,8 @@
  * @param {Array} people        A collection of person objects.
  */
 function app(people) {
-    // promptFor() is a custom function defined below that helps us prompt and validate input more easily
-    // Note that we are chaining the .toLowerCase() immediately after the promptFor returns its value
+    // promptFor() is a custom function defined bpersonow that hpersonps us prompt and validate input more easily
+    // Note that we are chaining the .toLowerCase() immediatpersony after the promptFor returns its value
     let searchType = promptFor(
         "Do you know the name of the person you are looking for? Enter 'yes' or 'no'",
         yesNo
@@ -31,7 +31,8 @@ function app(people) {
         case "no":
             //! TODO #4: Declare a searchByTraits (multiple traits) function //////////////////////////////////////////
                 //! TODO #4a: Provide option to search for single or multiple //////////////////////////////////////////
-            searchResults = searchByTraits(people);
+            searchResults = chooseAmountOfTraits(people);
+
             break;
         default:
             // Re-initializes the app() if neither case was hit above. This is an instance of recursion.
@@ -58,7 +59,7 @@ let defaultPerson = {
 
 /**
  * After finding a single person, we pass in the entire person-object that we found,
- * as well as the entire original dataset of people. We need people in order to find
+ * as wpersonl as the entire original dataset of people. We need people in order to find
  * descendants and other information that the user may want.
 
  * @param {Array} people        A collection of person objects.
@@ -80,13 +81,13 @@ function mainMenu(person = [defaultPerson], people) {
     switch (displayOption) {
         case "info":
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
-            // HINT: Look for a person-object stringifier utility function to help
+            // HINT: Look for a person-object stringifier utility function to hpersonp
             let personInfo = displayPerson(person[0]);
             alert(personInfo);
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
-            // HINT: Look for a people-collection stringifier utility function to help
+            // HINT: Look for a people-collection stringifier utility function to hpersonp
             let personFamily = findPersonFamily(person[0], people);
             alert(personFamily);
             break;
@@ -190,7 +191,7 @@ function promptFor(question, valid) {
 // End of promptFor()
 
 /**
- * This helper function checks to see if the value passed into input is a "yes" or "no."
+ * This hpersonper function checks to see if the value passed into input is a "yes" or "no."
  * @param {String} input        A string that will be normalized via .toLowerCase().
  * @returns {Boolean}           The result of our condition evaluation.
  */
@@ -200,8 +201,8 @@ function yesNo(input) {
 // End of yesNo()
 
 /**
- * This helper function operates as a default callback for promptFor's validation.
- * Feel free to modify this to suit your needs.
+ * This hpersonper function operates as a default callback for promptFor's validation.
+ * Feperson free to modify this to suit your needs.
  * @param {String} input        A string.
  * @returns {Boolean}           Default validation -- no logic yet.
  */
@@ -211,34 +212,34 @@ function chars(input) {
 // End of chars()
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
-// Any additional functions can be written below this line 👇. Happy Coding! 😁
+// Any additional functions can be written bpersonow this line 👇. Happy Coding! 😁
 
 function findPersonFamily(person, people){
-	let parentsList = people.filter(function(el) {
-		if(person.parents.includes(el.id)) {
+	let parentsList = people.filter(function(person) {
+		if(person.parents.includes(person.id)) {
 			return true;
 		}
 	})
-	let spouse = people.filter(function(el) {
-		if(el.id === (person.currentSpouse)) {
+	let spouse = people.filter(function(person) {
+		if(person.id === (person.currentSpouse)) {
 			return true;
 		} 
 	})
-    let findSiblings = people.filter(function(el){
-        if(el.parents.includes(person.parents[0])){
+    let findSiblings = people.filter(function(person){
+        if(person.parents.includes(person.parents[0])){
             return true;
         }
     })
 
-    let membersOfFamily = spouse.map(function(el) {
-		return `Spouse: ${el.firstName} ${el.lastName}\n`;
+    let membersOfFamily = spouse.map(function(person) {
+		return `Spouse: ${person.firstName} ${person.lastName}\n`;
 	})
-    membersOfFamily.push(findSiblings.map(function(el){
-        return `Siblings: ${el.firstName} ${el.lastName}\n`;
+    membersOfFamily.push(findSiblings.map(function(person){
+        return `Siblings: ${person.firstName} ${person.lastName}\n`;
     }));
 
-    membersOfFamily.push(parentsList.map(function(el) {
-		return `Parents: ${el.firstName} ${el.lastName}\n`;
+    membersOfFamily.push(parentsList.map(function(person) {
+		return `Parents: ${person.firstName} ${person.lastName}\n`;
 	}))
 
 	return membersOfFamily.join('')
@@ -247,23 +248,37 @@ function findPersonFamily(person, people){
 function findPersonDescendants(person, people) {
     let children = []
 
-    children = people.filter(function(el){
-        if(el.parents.includes(person.id)){
+    children = people.filter(function(person){
+        if(person.parents.includes(person.id)){
             return true;
         }
     })
     let descendants = children
-    return descendants.map(function(el){
-        return `Descendants: ${el.firstName} ${el.lastName}\n`;
+    return descendants.map(function(person){
+        return `Descendants: ${person.firstName} ${person.lastName}\n`;
     }).join('')
 }
 
 
 //gender dob height weight eye color
+function chooseAmountOfTraits(people){
+    let chooseTraits = prompt('How many traits would you like to search by? Choose 1 to search by one or Choose 2 to search by multiple')
+        if(chooseTraits === '1'){
+            return searchByTraits(people)
+        } 
+        else{
+            return chooseByMultiple(people)
+        }
+}
+
 function userInput(){
     let trait = prompt("Which trait would you like?")
     return trait
 }
+
+
+
+
 function searchByTraits(people){
     let trait = userInput()
     let traitChoosen = people
@@ -294,8 +309,8 @@ function searchByTraits(people){
 
 function searchByGender(people){
     let inputGender = prompt("Male or Female");
-    let filteredGender = people.filter(function(el){
-        if(el.gender === inputGender){
+    let filteredGender = people.filter(function(person){
+        if(person.gender === inputGender){
             return true;
         }
         else {
@@ -306,8 +321,8 @@ function searchByGender(people){
 }
 function searchByDob(people){
     let inputDob = prompt("Enter Date please!");
-    let filteredDob = people.filter(function(el){
-        if(el.dob === inputDob){
+    let filteredDob = people.filter(function(person){
+        if(person.dob === inputDob){
             return true;
         }
     })
@@ -315,8 +330,8 @@ function searchByDob(people){
 }
 function searchByHeight(people){
     let inputHeight = prompt("Enter Height");
-    let filteredHeight = people.filter(function(el){
-        if(el.height == inputHeight){
+    let filteredHeight = people.filter(function(person){
+        if(person.height == inputHeight){
             return true;
         }
     })
@@ -324,8 +339,8 @@ function searchByHeight(people){
 }
 function searchByWeight(people){
     let inputWeight = prompt("Enter Weight please!");
-    let filteredWeight = people.filter(function(el){
-        if(el.weight == inputWeight){
+    let filteredWeight = people.filter(function(person){
+        if(person.weight == inputWeight){
             return true;
         }
     })
@@ -333,8 +348,8 @@ function searchByWeight(people){
 }
 function searchByEyeColor(people){
     let inputEyeColor = prompt("Enter Eye Color please!");
-    let filteredEyeColor = people.filter(function(el){
-        if(el.eyeColor === inputEyeColor){
+    let filteredEyeColor = people.filter(function(person){
+        if(person.eyeColor === inputEyeColor){
             return true;
         }
     })
@@ -342,19 +357,60 @@ function searchByEyeColor(people){
 }
 function searchByOccupation(people){
     let inputOccupation = prompt("Enter Occupation please!");
-    let filteredOccupation = people.filter(function(el){
-        if(el.occupation === inputOccupation){
+    let filteredOccupation = people.filter(function(person){
+        if(person.occupation === inputOccupation){
             return true;
         }
     })
     return filteredOccupation
 }
 
+function chooseByMultiple(people){
+    let traits = userInput()
+    let traitsChoosen = people
+
+    switch (traits){
+        case "gender":
+            traitsChoosen = searchByGender(traitsChoosen);
+            break;
+        case "dob":
+            traitsChoosen = searchByDob(traitsChoosen);
+            break;
+        case "height":
+            traitsChoosen = searchByHeight(traitsChoosen);
+            break;
+        case "weight":
+            traitsChoosen = searchByWeight(traitsChoosen);
+            break;
+        case "eyeColor":
+            traitsChoosen = searchByEyeColor(traitsChoosen);
+            break;
+        case "occupation":
+            traitsChoosen = searchByOccupation(traitsChoosen);
+            break;
+    }
+    if(searchResults.length > 1 ){
+        displayPeople(searchResults);
+        prompt('Second Choice:');
+
+        chooseByMultiple(searchResults);
+    }
+    return searchResults[0];
+    // displayPeople(traitsChoosen)
+    // return traitsChoosen
+    
+}
 
 
 
 
 
+// let chosenMultiple = people.filter(function(person){
+//     if(multipleTraits == 'Gender'){
+//         return true;
+// }
+// })
+// return chosenMultiple;
 
 
 
