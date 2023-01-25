@@ -262,12 +262,18 @@ function findPersonDescendants(person, people) {
 
 //gender dob height weight eye color
 function chooseAmountOfTraits(people){
-    let chooseTraits = prompt('How many traits would you like to search by? Choose 1 to search by one or Choose 2 to search by multiple')
+    let chooseTraits = prompt('How many traits would you like to search by? Choose 1 to search by one or Choose 2 to search by multiple. Or 3 to restart and 4 to exit')
         if(chooseTraits === '1'){
             return searchByTraits(people)
         } 
-        else{
+        else if(chooseTraits === '2'){
             return chooseByMultiple(people)
+        }
+        else if(chooseTraits === '3'){
+            return app(people)
+        }
+        else{
+            return mainMenu(person, people);
         }
 }
 
@@ -365,41 +371,47 @@ function searchByOccupation(people){
     return filteredOccupation
 }
 
-function chooseByMultiple(people){
-    let traits = userInput()
-    let traitsChoosen = people
+function chooseByMultiple(){
+    let traits = prompt("Please choose mutilpe traits.")
+    let traitsChosen = people
+}
 
-    switch (traits){
-        case "gender":
-            traitsChoosen = searchByGender(traitsChoosen);
-            break;
-        case "dob":
-            traitsChoosen = searchByDob(traitsChoosen);
-            break;
-        case "height":
-            traitsChoosen = searchByHeight(traitsChoosen);
-            break;
-        case "weight":
-            traitsChoosen = searchByWeight(traitsChoosen);
-            break;
-        case "eyeColor":
-            traitsChoosen = searchByEyeColor(traitsChoosen);
-            break;
-        case "occupation":
-            traitsChoosen = searchByOccupation(traitsChoosen);
-            break;
-    }
-    if(searchResults.length > 1 ){
-        displayPeople(searchResults);
-        prompt('Second Choice:');
 
-        chooseByMultiple(searchResults);
-    }
-    return searchResults[0];
+// function chooseByMultiple(people){
+//     let traits = userInput()
+//     let traitsChoosen = people
+
+//     switch (traits){
+//         case "gender":
+//             traitsChoosen = searchByGender(traitsChoosen);
+//             break;
+//         case "dob":
+//             traitsChoosen = searchByDob(traitsChoosen);
+//             break;
+//         case "height":
+//             traitsChoosen = searchByHeight(traitsChoosen);
+//             break;
+//         case "weight":
+//             traitsChoosen = searchByWeight(traitsChoosen);
+//             break;
+//         case "eyeColor":
+//             traitsChoosen = searchByEyeColor(traitsChoosen);
+//             break;
+//         case "occupation":
+//             traitsChoosen = searchByOccupation(traitsChoosen);
+//             break;
+//     }
+//     if(searchResults.length > 1 ){
+//         displayPeople(searchResults);
+//         prompt('Second Choice:');
+
+//         chooseByMultiple(searchResults);
+//     }
+//     return searchResults[0];
     // displayPeople(traitsChoosen)
     // return traitsChoosen
     
-}
+// }
 
 
 
